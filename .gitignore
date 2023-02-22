@@ -1,0 +1,10 @@
+venv/
+venv.bak
+project/*.log
+project/*.pot
+project/*.pyc
+project/media
+project/__pycache__
+project/db.sqlite3
+*.bak
+CDD_COMMIT_MSG
