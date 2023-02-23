@@ -9,7 +9,7 @@
 		<p class="card-text">
 		{{product.name}}
 		</p>
-		<a href="/products/{{product.id}}" class="btn btn-primary">Go somewhere</a>
+		<a href="{% url 'product:detailproduct' product.id %}" class="btn btn-primary">view the product</a>
 	</div>
 </div>
 {% endfor %}

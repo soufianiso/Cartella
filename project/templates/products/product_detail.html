@@ -2,4 +2,7 @@
 
 {% block content %}
 <h1>this is the detail of the product {{obj.name}} </h1>
+<a href="{% url 'cart:add_to_cart' pk=obj.id %}" method="post" type="button" class="btn btn-primary">add to cart</a>
+
+
 {% endblock %}
