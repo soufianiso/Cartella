@@ -20,6 +20,6 @@ from .views import  AddToCart
 app_name = 'cart' 
 urlpatterns = [
     
-    path('add',AddToCart.as_view(), name='add_to_cart'),
+    path('',AddToCart.as_view(), name='add_to_cart'),
 ]
 
