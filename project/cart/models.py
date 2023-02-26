@@ -21,6 +21,21 @@ class Order(models.Model):
     def __str__(self):
         return self.session_id
 
+    @property
+    def get_total_items(self):
+        total = 0
+        for item in self.orderitem_set.all():
+            total += item.quantity  
+        return total
+
+    @property 
+    def get_total_price(self):
+        total = 0
+        for item in self.orderitem_set.all():
+            total += item.get_total
+        return total
+
+        
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True) 

@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 	{% block content %}
+	<h1>total items: {{order.get_total_items}}</h1>
+	<h1> total price: ${{order.get_total_price}}</h1>
 		{% for item in items %}
 			<h1>product is {{item.product}}</h1>
 			<h2> the quantity is {{item.quantity}}</h2>
-			<h2> the price is ${{item.product.price}}
+			<h2> the price is ${{item.product.price}}</h2>
 			<h2> the total price is ${{item.get_total}}</h2>
+			<a href="{% url 'cart:add_item' item.id %}">add</a>
+			<a href="{% url 'cart:delete_item' item.id %}">delete</a>
 		{% endfor %}
+		
 	{% endblock %}
