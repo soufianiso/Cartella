@@ -24,10 +24,16 @@ class Order(models.Model):
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True) 
-    quantity = models.IntegerField() 
+    quantity = models.IntegerField(default=True) 
     
     def __str__(self):
         return str(self.product)
+
+    @property
+    def get_total(self):
+        total = self.quantity * self.product.price
+        return total
+
 class ShippingInfo(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     order = models.ForeignKey(Order, on_delete = models.SET_NULL,  null=True, blank=True)

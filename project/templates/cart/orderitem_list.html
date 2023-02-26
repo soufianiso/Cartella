@@ -4,5 +4,7 @@
 		{% for item in items %}
 			<h1>product is {{item.product}}</h1>
 			<h2> the quantity is {{item.quantity}}</h2>
+			<h2> the price is ${{item.product.price}}
+			<h2> the total price is ${{item.get_total}}</h2>
 		{% endfor %}
 	{% endblock %}

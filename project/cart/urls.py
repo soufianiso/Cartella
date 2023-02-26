@@ -21,6 +21,6 @@ app_name = 'cart'
 urlpatterns = [
     
     path('',CartView.as_view(), name='cart'),
-    path('/add/<int:pk>/',AddToCart.as_view(), name='add_to_cart'),
+    path('add/<int:pk>/',AddToCart.as_view(), name='add_to_cart'),
 ]
 
