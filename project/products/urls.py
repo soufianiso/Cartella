@@ -19,7 +19,7 @@ app_name = 'product'
 urlpatterns = [
     
     path('',ListProduct.as_view(), name='list'),
-    path('products/',ListProduct.as_view(), name='list'),
-    path('products/<int:id>', DetailProduct.as_view(), name = 'detailproduct'),    
+    path('products/',ListProduct.as_view(), name='listproduct'),
+    path('products/<int:id>', DetailProduct.as_view(), name='detailproduct'),    
 ]
 
