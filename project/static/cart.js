@@ -1,36 +1,44 @@
 const button = document.querySelectorAll('.btn');
 for (let i = 0; i < button.length; i++) {
   button[i].addEventListener('click', () => {
-	
+	const action = button[i].dataset.action	
+	const url = button[i].dataset.url	
 	data = {
-	  id: button[i].dataset.id,
 	  quantity: parseInt(button[i].dataset.quantity),
-	  action: button[i].dataset.action,
-		url: button[i].dataset.url,
-
-
 	};
 
-	  if (data.action === 'add'){
+	  if (action === 'add'){
 		  data.quantity +=1;
 	  }
-	  else if (data.action === 'delete'){
+	  else if (action === 'delete'){
 		  data.quantity -=1;
 	  }
-	console.log(data.url);
-	fetch(data.url, {
+	console.log(url);
+	fetch(url, {
 	  method: 'PUT',
 	  headers: { 'Content-type': 'application/json' ,
 				 'X-CSRFtoken': csrftoken,},
-	  body: JSON.stringify(data),
-	})
+	  body: JSON.stringify(data),})
 	  .then((response) => response.json())
 	  .then((data) => {
 			console.log(data.quantity);
-			location.reload();	
+			location.reload();	});
+	
+	if (action === 'deleteall'){
+	fetch(url, {
+	  method: 'DELETE',
+	  headers: { 'Content-type': 'application/json' ,
+				 'X-CSRFtoken': csrftoken,},
+	  body: JSON.stringify(data),})
+	  .then((response) => response.json())
+	  .then((data) => {
+			console.log(data.quantity);
+			location.reload();	});
+		
 
 
-	  });
+	}
+
   });
 }
 

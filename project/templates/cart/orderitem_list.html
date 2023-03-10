@@ -13,9 +13,12 @@
 			<h4>Total: ${{item.get_total}}</h4>
 			<button  class="btn btn-success" data-url={% url 'api:list_product_api' item.id  %} data-id={{item.id}} data-quantity={{item.quantity}} data-action='add'>add</button>
 			<button  class="btn btn-danger" data-url={% url 'api:list_product_api' item.id %} data-id={{item.id}} data-quantity={{item.quantity}} data-action='delete'>delete</button>
+			<button class="btn btn-primary" data-url={% url 'api:list_product_api' item.id %} data-action='deleteall'> delete all</button>
+.
 		  </div>
 	</div>
 		{% endfor %}
 
-	<script src="{% static 'cart.js' %}"></script>
+<script src = "{% static 'cart.js' %}"> </script>
+
 	{% endblock %}

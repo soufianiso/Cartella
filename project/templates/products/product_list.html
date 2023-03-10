@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %}
+{% load static %}
 <div class="d-flex flex-wrap p-5">
 {% for product in products %}
 	<div class="card m-2 col-sm-3 justify-context-between" style="width: 18rem">
-		<img src="..." class="card-img-top" alt="..." />
 		<div class="card-body">
 			<h2 class="card-text">
 			{{product.name}}
@@ -11,10 +11,42 @@
 			{{product.description}}
 			</p>
 			<a href="{% url 'product:detailproduct' product.id %}" class=" btn btn-primary">view the product</a>
-			<a href="{% url 'cart:add_to_cart' product.id %}" class="my-3 btn btn-primary"> add to cart </a>
+			<a type='button'   data-product="{{product.id}}"  class="addtocart my-3 btn btn-primary"> add to cart </a>
 		</div>
 	</div>
 {% endfor %}
 </div>
+
+<script>
+
+
+const button = document.querySelectorAll('.addtocart');
+console.log(button)
+for (let i = 0; i < button.length; i++) {
+  button[i].addEventListener('click', () => {
+	console.log('s');	
+	data = {
+		product: button[i].dataset.product,
+	}
+	console.log(data.product)
+
+	console.log('sdfsdf');
+	fetch('http://127.0.0.1:8000/api/addtocart/', {
+	  method: 'POST',
+	  headers: { 'Content-type': 'application/json' ,
+				 'X-CSRFtoken': csrftoken,},
+	  body: JSON.stringify(data),
+	})
+	  .then((response) => response.json())
+	  .then((data) => {
+			console.log(data.product);
+
+
+	  });
+  });
+}
+
+
+</script>
 
 {% endblock %}

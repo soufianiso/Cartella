@@ -1,5 +1,3 @@
-
-
 """config URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,14 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path 
-from .views import  CartView, AddToCart,  AddOneItem, DeleteOneItem
-app_name = 'cart' 
-urlpatterns = [
-    
-    path('',CartView.as_view(), name='cart'),
-    path('add/<int:pk>/',AddToCart.as_view(), name='add_to_cart'),
-    path('additem/<int:pk>/', AddOneItem.as_view(), name='add_item'),
-    path('deleteitem/<int:pk>/', DeleteOneItem.as_view(), name='delete_item'),
-]
+from django.urls import path
+from .views import CartView
 
+app_name = "cart"
+urlpatterns = [
+    path("", CartView.as_view(), name="cart"),
+]
