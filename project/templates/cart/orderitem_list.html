@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 
+{% load static %}
 	{% block content %}
+
 	<h1>Total items: {{order.get_total_items}}</h1>
 	<h1>Total price: ${{order.get_total_price}}</h1>
 		{% for item in items %}
-				  <div class="card-body border">
-					<h2>{{item.product}}</h2>
-					<h4>Quantity: {{item.quantity}}</h4>
-					<h4>Price: ${{item.product.price}}</h4>
-					<h4>Total: ${{item.get_total}}</h4>
-					<a href="{% url 'cart:add_item' item.id %}" class="btn btn-success">add</a>
-					<a href="{% url 'cart:delete_item' item.id %}" class="btn btn-danger">delete</a>
-				  </div>
-			</div>
+		  <div class="card-body border">
+			<h2>{{item.product}}</h2>
+			<h4>Quantity: {{item.quantity}}</h4>
+			<h4>Price: ${{item.product.price}}</h4>
+			<h4>Total: ${{item.get_total}}</h4>
+			<button  class="btn btn-success" data-url={% url 'api:list_product_api' item.id  %} data-id={{item.id}} data-quantity={{item.quantity}} data-action='add'>add</button>
+			<button  class="btn btn-danger" data-url={% url 'api:list_product_api' item.id %} data-id={{item.id}} data-quantity={{item.quantity}} data-action='delete'>delete</button>
+			<button class="btn btn-primary" data-url={% url 'api:list_product_api' item.id %} data-action='deleteall'> delete all</button>
+.
+		  </div>
+	</div>
 		{% endfor %}
-		
+
+<script src = "{% static 'cart.js' %}"> </script>
+
 	{% endblock %}
